@@ -1,21 +1,20 @@
-""" One potential error is that the user supplies a string instead of an integer for the `fizzbuzz()` function's argument. 
-What happens in this situation? Run your code and find out. Then update your code so that if a string is supplied, 
-the code enters a loop where the user is asked to supply a new number. This loop should continue to loop, 
-asking for a new value, ending only when an integer is provided. 
-Since this is a completely new feature, write a new function for this. This function should be called from `fizzbuzz()`.
-version 6; previous tests broken now"""
+""" Refactor your code once again so that the function's argument is obtained by asking the user for a number. 
+Use a separate function for this. How will this affect your main routine? Where is the best place to call this function?
+version 7"""
 
-# the basic fizzbuzz
+# placing data collection in fizzbuzz function but it would seem to be less modular
+# than placing the data collection function in the main routine.
+
 def fizzbuzz():
     out = []
-    number = raw_input("Enter a number > ")
-    type(number)
+    # data collection for user
+    number = user_input()
     # test for integer
     try:
         number = int(number)
     except ValueError:
         number = get_number()
-    # now fixxbuzzing
+    # now fizzbuzzing
     for x in range(1, int(number) + 1):
         if (x % 3 == 0) and (x % 5 == 0):
             out.append("FizzBuzz")
@@ -37,6 +36,11 @@ def get_number():
         except ValueError:
             pass
     return out
+
+def user_input():
+    # get initial user input; corrections to be made by get_number()
+    number = raw_input("Enter a number > ")
+    return number
 
 # main routine
 if __name__ == "__main__":
