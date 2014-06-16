@@ -1,21 +1,25 @@
-"""Refactor the code so that it uses a function, called `fizzbuzz()`, that takes a number as its argument. 
-Then use this argument as the upper limit of the range. So, instead of a range from 1 to 100, 
-the range starts at 1 and ends at the user-supplied number. Make sure to provide a 
-`if __name__ == '__main__':`."""
+""" Refactor again. This time, update the function so that instead of printing the output, 
+all numbers and strings are added to a single list. Return the entire list, 
+which you should then loop through within the main routine and then print the numbers.
+version 4 """
 
+# the basic fizzbuzz with a default value of 100
+def fizzbuzz(number=100):
+    out = []
+    for x in range(1, int(number) + 1):
+        if (x % 3 == 0) and (x % 5 == 0):
+            out.append("FizzBuzz")
+        elif x % 5 == 0:
+            out.append("Buzz")
+        elif x % 3 == 0:
+            out.append("Fizz")
+        else:
+            out.append(x)
+    return out
 
-def fizzbuzz(n=100):
-	for x in range(1, n + 1):
-		if (x%3==0) and (x%5==0):
-			result = "Fizz Buzz"
-		elif (x%5==0):
-			result = "Buzz"
-		elif (x%3==0):
-			result = "Fizz"
-		else:
-			result = x
-		print result
-
-if __name__ ==  "__main__":
+# main routine
+if __name__ == "__main__":
     number = raw_input("Enter a number > ")
-    out = fizzbuzz(int(number))
+    the_list = fizzbuzz(number)
+    for entry in the_list:
+        print entry
