@@ -1,21 +1,12 @@
-""" Refactor your code once again so that the function's argument is obtained by asking the user for a number. 
-Use a separate function for this. How will this affect your main routine? Where is the best place to call this function?
-version 7"""
+"""Update your main routine so that you first call the function to get the value from the user. 
+The return value is then passed to a function for validation, which you've already written. 
+Make sure you remove the function call from `fizzbuzz()` where you first set up the validation in Step 6.
+version 8"""
 
-# placing data collection in fizzbuzz function but it would seem to be less modular
-# than placing the data collection function in the main routine.
-
-def fizzbuzz():
+# stripping user_input and validation from fizzbuzz; now using main routine
+def fizzbuzz(number=100):
     out = []
-    # data collection for user
-    number = user_input()
-    # test for integer
-    try:
-        number = int(number)
-    except ValueError:
-        number = get_number()
-    # now fizzbuzzing
-    for x in range(1, int(number) + 1):
+    for x in range(1, number + 1):
         if (x % 3 == 0) and (x % 5 == 0):
             out.append("FizzBuzz")
         elif x % 5 == 0:
@@ -26,7 +17,16 @@ def fizzbuzz():
             out.append(x)
     return out
 
-def get_number():
+ # validation of user input
+def validate_number(number):
+    try:
+        n = int(number)
+    except ValueError:
+        n = get_integer()
+    return n
+
+# get an integer loop
+def get_integer():
     # test for integer loop
     while True:
         try:
@@ -37,13 +37,15 @@ def get_number():
             pass
     return out
 
+# get initial user input
 def user_input():
-    # get initial user input; corrections to be made by get_number()
     number = raw_input("Enter a number > ")
     return number
 
 # main routine
 if __name__ == "__main__":
-    the_list = fizzbuzz()
+    number = user_input()
+    n = validate_number(number)
+    the_list = fizzbuzz(n)
     for entry in the_list:
         print entry
