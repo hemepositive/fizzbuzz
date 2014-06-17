@@ -1,11 +1,11 @@
 """Create a separate file to test your code with unit tests. 
 Name this file *tests.py*. Write tests for each scenario (e.g, multiple of 3, 5, 15, etc.).
-version 5"""
+testing for version 8"""
 
 from random import randint
 import unittest
 import mock
-from fizzbuzz import fizzbuzz, user_input, get_integer, validate_number
+from fizzbuzz import fizzbuzz, user_input, get_integer, check_for_int
 
 
 class FizzBuzzTests(unittest.TestCase):
@@ -54,32 +54,17 @@ class FizzBuzzTests(unittest.TestCase):
     def test_get_integer(self):
         print "testing get_integer"
         with mock.patch('__builtin__.raw_input', return_value=24):
-            assert get_integer() == 24
+            assert get_integer(24) == 24
             print "get_integer integer passed"
-        # cannot figure how to test for user input of a string
 
+    def test_check_for_int(self):
+        test_list = (1, 44, "45", 'goat', "5dew3")
+        expected = [True, True, True, False, False]
+        results = []
+        for entry in test_list:
+            results.append(check_for_int(entry))
+        self.assertEqual(expected, results)
 
-    def test_validate_number(self):
-        test_list = ['string', 42]
-        while test_list:
-            item = test_list.pop()
-            if type(item) == int:
-                self.assertEqual(validate_number(item), item, msg="Should return an integer")
-            # problem of multiple args for get_integer
-            else:
-                # problem of multiple args for get_integer
-                pass
-
-        
-"""
- # validation of user input
-def validate_number(number):
-    try:
-        n = int(number)
-    except ValueError:
-        n = get_integer()
-    return n       
-"""
 if __name__ == "__main__":
     print "testing..."
     unittest.main()

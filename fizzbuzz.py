@@ -3,6 +3,7 @@ The return value is then passed to a function for validation, which you've alrea
 Make sure you remove the function call from `fizzbuzz()` where you first set up the validation in Step 6.
 version 8"""
 
+
 # stripping user_input and validation from fizzbuzz; now using main routine
 def fizzbuzz(number=100):
     out = []
@@ -18,24 +19,28 @@ def fizzbuzz(number=100):
     return out
 
  # validation of user input
-def validate_number(number):
+def check_for_int(number):
     try:
-        n = int(number)
+        print "check_for_int: try"
+        int(number)
+        print "testing {} which is a type {}.".format(number, type(number))
+        return True
     except ValueError:
-        n = get_integer()
-    return n
+        print "check_for_int: except"
+        return False
 
-# get an integer loop
-def get_integer():
+# get an integer loop; modified to accept argument as to make testing easier
+# multiple user inputs in loop difficult to test with mock and unittest
+def get_integer(number):
     # test for integer loop
-    while True:
-        try:
-            n = raw_input("please enter a number; not letters or what not! > ")
-            out = int(n)
-            break
-        except ValueError:
-            pass
-    return out
+    print "getting integer now"
+    print "testing {} which is a type {}.".format(number, type(number))
+    while check_for_int(number) == False:
+        print "checked and false"
+        print check_for_int(number)
+        number = raw_input("please enter a number; not letters or what not! > ")
+    print "now true"
+    return int(number)
 
 # get initial user input
 def user_input():
@@ -45,7 +50,8 @@ def user_input():
 # main routine
 if __name__ == "__main__":
     number = user_input()
-    n = validate_number(number)
+    n = get_integer(number)
+    print "testing {} which is a type {}.".format(n, type(n))
     the_list = fizzbuzz(n)
     for entry in the_list:
         print entry
