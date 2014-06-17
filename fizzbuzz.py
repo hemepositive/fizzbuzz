@@ -21,25 +21,17 @@ def fizzbuzz(number=100):
  # validation of user input
 def check_for_int(number):
     try:
-        print "check_for_int: try"
         int(number)
-        print "testing {} which is a type {}.".format(number, type(number))
         return True
     except ValueError:
-        print "check_for_int: except"
         return False
 
 # get an integer loop; modified to accept argument as to make testing easier
 # multiple user inputs in loop difficult to test with mock and unittest
 def get_integer(number):
     # test for integer loop
-    print "getting integer now"
-    print "testing {} which is a type {}.".format(number, type(number))
     while check_for_int(number) == False:
-        print "checked and false"
-        print check_for_int(number)
         number = raw_input("please enter a number; not letters or what not! > ")
-    print "now true"
     return int(number)
 
 # get initial user input
@@ -51,7 +43,6 @@ def user_input():
 if __name__ == "__main__":
     number = user_input()
     n = get_integer(number)
-    print "testing {} which is a type {}.".format(n, type(n))
     the_list = fizzbuzz(n)
     for entry in the_list:
         print entry
