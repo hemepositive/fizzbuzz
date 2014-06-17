@@ -1,22 +1,41 @@
-"""Update your main routine so that you first call the function to get the value from the user. 
-The return value is then passed to a function for validation, which you've already written. 
-Make sure you remove the function call from `fizzbuzz()` where you first set up the validation in Step 6.
-version 8"""
+"""Let's add one more function that takes two integers as arguments and returns true if the first number is 
+evenly divisible by the second, otherwise it returns false. Refactor the `fizzbuzz()` 
+function so that it calls this function for each scenario (e.g, multiple of 3, 5, 15, etc.) 
+instead of performing the logic itself..
+version 10"""
 
-
-# stripping user_input and validation from fizzbuzz; now using main routine
+# changing to accept modulo function thing
 def fizzbuzz(number=100):
     out = []
+    words = {(True, True): "FizzBuzz",
+             (True, False): "Fizz",
+             (False, True): "Buzz",
+             (False, False): False }
     for x in range(1, number + 1):
-        if (x % 3 == 0) and (x % 5 == 0):
-            out.append("FizzBuzz")
-        elif x % 5 == 0:
-            out.append("Buzz")
-        elif x % 3 == 0:
-            out.append("Fizz")
+        if words[(modulor(x,3),modulor(x,5))]:
+            out.append(words[(modulor(x,3),modulor(x,5))])
         else:
             out.append(x)
+    """
+    Another way using a dictionary
+
+    d = {(True, True): "FizzBuzz",
+         (True, False): "Fizz",
+         (False, True): "Buzz"}
+    for x in range(1, number + 1):
+        if (modulor(x,3),modulor(x,5)) in d.keys():
+            out.append(words[(modulor(x,3),modulor(x,5))])
+        else:
+            out.append(x)
+    """
     return out
+
+# divides to numbers and returns true if a evenly divides b
+def modulor(a,b):
+    if a % b == 0:
+        return True
+    return False
+
 
  # validation of user input
 def check_for_int(number):
@@ -26,8 +45,7 @@ def check_for_int(number):
     except ValueError:
         return False
 
-# get an integer loop; modified to accept argument as to make testing easier
-# multiple user inputs in loop difficult to test with mock and unittest
+# loops until user supplies something that can be "intted"
 def get_integer(number):
     # test for integer loop
     while check_for_int(number) == False:
