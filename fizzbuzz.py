@@ -1,10 +1,12 @@
-"""Let's add one more function that takes two integers as arguments and returns true if the first number is 
-evenly divisible by the second, otherwise it returns false. Refactor the `fizzbuzz()` 
-function so that it calls this function for each scenario (e.g, multiple of 3, 5, 15, etc.) 
-instead of performing the logic itself..
-version 10"""
+"""Finally, you probably used the modulus operator, `%`,
+to to test if a number is a multiple of 3, 5, or 15. 
+Refactor your code so you are not using that operator.
+version 11"""
 
-# changing to accept modulo function thing
+# Changed to use method other than modulo
+# I like string methods and they have not yet 
+# been required in advanced fizzbuzz
+# I also like my boolean tuple/dictionary method 
 def fizzbuzz(number=100):
     out = []
     words = {(True, True): "FizzBuzz",
@@ -12,30 +14,21 @@ def fizzbuzz(number=100):
              (False, True): "Buzz",
              (False, False): False }
     for x in range(1, number + 1):
-        if words[(modulor(x,3),modulor(x,5))]:
-            out.append(words[(modulor(x,3),modulor(x,5))])
+        test3 = str(float(x/3.0))
+        test5 = str(float(x/5.0))
+        t = (test_for_zero(test3), test_for_zero(test5))
+        if words[t]:
+            out.append(words[t])
         else:
             out.append(x)
-    """
-    Another way using a dictionary
-
-    d = {(True, True): "FizzBuzz",
-         (True, False): "Fizz",
-         (False, True): "Buzz"}
-    for x in range(1, number + 1):
-        if (modulor(x,3),modulor(x,5)) in d.keys():
-            out.append(words[(modulor(x,3),modulor(x,5))])
-        else:
-            out.append(x)
-    """
     return out
 
-# divides to numbers and returns true if a evenly divides b
-def modulor(a,b):
-    if a % b == 0:
+def test_for_zero(s):
+    cut_period = s.replace('.', ' ')
+    listed = cut_period.split()
+    if int(listed[-1]) == 0:
         return True
     return False
-
 
  # validation of user input
 def check_for_int(number):
@@ -64,3 +57,16 @@ if __name__ == "__main__":
     the_list = fizzbuzz(n)
     for entry in the_list:
         print entry
+
+"""
+    Another way using a dictionary
+
+    d = {(True, True): "FizzBuzz",
+         (True, False): "Fizz",
+         (False, True): "Buzz"}
+    for x in range(1, number + 1):
+        if (modulor(x,3),modulor(x,5)) in d.keys():
+            out.append(words[(modulor(x,3),modulor(x,5))])
+        else:
+            out.append(x)
+    """
