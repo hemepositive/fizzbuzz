@@ -12,3 +12,5 @@ remove files: git rm -f --cached <file>
 place .gitignore in working_directory/ and not .git/
 
 tags not pushed automatically: git push origin --tags
+
+using decimals in tags (i.e. v1.0, v2.3) looks better 
