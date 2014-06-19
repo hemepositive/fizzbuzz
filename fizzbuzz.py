@@ -51,17 +51,16 @@ def validate_user_input(test_number):
     messages = ["""Do you wash your face with the same water your ass is sitting in? Try a whole number this time. \nThe number keys are at the top of your keyboard.>""", "Please just enter a number. Letters are not numbers.> ",
         """You must have gone to Auburn. Whole numbers are what we are looking for. Try again.> """
         """Please for the love of all that is true and good enter an integer.> """,
-        "I'm from Alabama but I know what a whole number is. Do it again.> "]:
-    ???????????????????????????????????
+        "I'm from Alabama but I know what a whole number is. Do it again.> "]
     while True:
         try:
-            if tries <=3:
+            if attempts <=2:
                 new_number = int(test_number)
                 return new_number
             else:
                 sys.exit("\n \n    Forget it.    \n \n")
         except ValueError:
-            tries += 1
+            attempts += 1
             harsh_words = random.choice(messages)
             test_number = raw_input(harsh_words)
             pass
