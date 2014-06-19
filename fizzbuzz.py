@@ -1,10 +1,10 @@
-"""Make sure you have 4 total functions that are named appropriately. 
+"""Make sure you have 4 total functions that are named appropriately.
 Add docstrings to each. Make sure all your tests pass. Then PUSH your code to Github. .
 version 13.
 """
-
-# Oops I have > 4 functions; combinded 2 functions into validate_user_input
-# Added docstrings
+# changelog
+# 1. using xrange
+# 2. more verbose variable names
 
 def fizzbuzz(number=100):
     """ Generates a list such that:
