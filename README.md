@@ -20,3 +20,6 @@ forget tagging unless really helpful
 aborting a merge: git merge --abort
 
 trying out meld (meldmerge.org)
+
+use git stash & git stash pop (useful for switching checkout w/o commits
+    the modified/new files have to be tracked (git add))
